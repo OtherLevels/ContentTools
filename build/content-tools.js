@@ -1005,7 +1005,7 @@
       }
       this.tagName = '';
       this.selfClosed = false;
-      return this.attributes = {};
+      return this.attributes = [];
     };
 
     _Parser.prototype._popTag = function() {
@@ -1310,6 +1310,7 @@
   })();
 
 }).call(this);
+
 (function() {
   var SELF_CLOSING_NODE_NAMES, _containedBy, _getChildNodeAndOffset, _getNodeRange, _getOffsetOfChildNode,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
@@ -3257,7 +3258,7 @@
         indent = '';
       }
       if (!this._lastCached || this._lastCached < this._modified) {
-        content = this.content.copy().trim();
+        content = this.content.copy();
         content.optimize();
         this._lastCached = Date.now();
         this._cached = content.html();
@@ -3517,11 +3518,11 @@
     };
 
     Text.prototype._syncContent = function(ev) {
-      var newSnapshot, snapshot;
+      var newSnaphot, snapshot;
       snapshot = this.content.html();
       this.content = new HTMLString.String(this._domElement.innerHTML, this.content.preserveWhitespace());
-      newSnapshot = this.content.html();
-      if (snapshot !== newSnapshot) {
+      newSnaphot = this.content.html();
+      if (snapshot !== newSnaphot) {
         this.taint();
       }
       return this._flagIfEmpty();
@@ -4235,7 +4236,7 @@
         indent = '';
       }
       if (!this._lastCached || this._lastCached < this._modified) {
-        content = this.content.copy().trim();
+        content = this.content.copy();
         content.optimize();
         this._lastCached = Date.now();
         this._cached = content.html();
@@ -4784,7 +4785,7 @@
         indent = '';
       }
       if (!this._lastCached || this._lastCached < this._modified) {
-        content = this.content.copy().trim();
+        content = this.content.copy();
         content.optimize();
         this._lastCached = Date.now();
         this._cached = content.html();
@@ -6182,6 +6183,23 @@
       domProgressBar.appendChild(this._domProgress);
       domActions = this.constructor.createDiv(['ct-control-group', 'ct-control-group--right']);
       this._domControls.appendChild(domActions);
+
+      // For the Input element
+      this._domURLInput = document.createElement('input');
+      this._domURLInput.setAttribute('class', 'ct-image-dialog__input ct-control--fetch');
+      this._domURLInput.setAttribute('name', 'url');
+      this._domURLInput.setAttribute('placeholder', ContentEdit._('Paste image URL') + '...');
+      this._domURLInput.setAttribute('type', 'text');
+      domActions.appendChild(this._domURLInput);
+
+      this._domFetch = this.constructor.createDiv([
+        'ct-control',
+        'ct-control--text',
+        'ct-control--fetch'
+      ]);
+      this._domFetch.textContent = ContentEdit._('Fetch');
+      domActions.appendChild(this._domFetch);
+
       this._domUpload = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--upload']);
       this._domUpload.textContent = ContentEdit._('Upload');
       domActions.appendChild(this._domUpload);
@@ -6239,6 +6257,26 @@
       return this.trigger('save', imageURL, imageSize, imageAttrs);
     };
 
+    // Fetch image
+    ImageDialog.prototype.fetchImage = function (imageURL) {
+      var _this = this;
+      // Create image object in order to load image and determine its dimension
+      var img = new Image();
+      img.onerror = function (e) {
+        alert(ContentEdit._('Image is invalid'));
+      };
+
+      img.onload = function () {
+        _this._imageSize = [
+          img.width,
+          img.height
+        ];
+        _this._imageURL = img.src;
+        _this.populate(_this._imageURL, _this._imageSize);
+      };
+      img.src = imageURL;
+    };
+
     ImageDialog.prototype.state = function(state) {
       var prevState;
       if (state === void 0) {
@@ -6272,6 +6310,30 @@
 
     ImageDialog.prototype._addDOMEventListeners = function() {
       ImageDialog.__super__._addDOMEventListeners.call(this);
+
+      // when user hit return
+      this._domURLInput.addEventListener('keydown', (function (_this) {
+        return function (ev) {
+          if (ev.keyCode !== 13 || !_this._domURLInput.value)
+            return;
+
+          _this.fetchImage(_this._domURLInput.value);
+
+          return _this.trigger('imageUploader.fetchReady', {});
+        };
+      })(this));
+
+      this._domFetch.addEventListener('click', (function (_this) {
+        return function (ev) {
+          if (!_this._domURLInput.value)
+            return;
+
+          _this.fetchImage(_this._domURLInput.value);
+
+          return _this.trigger('imageUploader.fetchReady', {});
+        };
+      })(this));
+
       this._domInput.addEventListener('change', (function(_this) {
         return function(ev) {
           var file;

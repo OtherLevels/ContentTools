@@ -1,0 +1,23 @@
+{
+  "name": "ol-content-tools",
+  "description": "OtherLevels fork of ContentTools",
+  "main": [
+    "build/content-tools.min.js",
+    "build/content-tools.min.css"
+  ],
+  "authors": [
+    "ryan.drake@otherlevels.com",
+    "piyush.chauhan@otherlevels.com",
+    "dominic.garibaldi@otherlevels.com"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/iamryandrkake/ContentTools",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
