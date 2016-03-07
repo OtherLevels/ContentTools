@@ -6325,7 +6325,7 @@
         };
 
         ImageDialog.prototype.insertImage = function(imageURL) {
-            this._imageURL = "'" + imageURL "'";
+            this._imageURL = imageURL;
             var div = document.getElementById('content-tools-editor')
             div.innerHTML = '<img src="' + this._imageURL + '" />';
             // var image = new ContentEdit.Image(
