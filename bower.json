@@ -3,7 +3,8 @@
   "description": "OtherLevels fork of ContentTools",
   "main": [
     "build/content-tools.min.js",
-    "build/content-tools.min.css"
+    "build/content-tools.min.css",
+    "build/icons.woff"
   ],
   "authors": [
     "ryan.drake@otherlevels.com",
