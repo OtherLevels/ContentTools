@@ -6325,14 +6325,14 @@
         };
 
         ImageDialog.prototype.insertImage = function(imageURL) {
-            this._imageURL = imageURL;
+            this._imageURL = "'" + imageURL "'";
             // var div = document.createElement('p');
             // div.className = 'class="ce-element ce-element--type-text ce-element--focused';
             // div.innerHTML = '<img src="' + this._imageURL + '" />';
             var image = new ContentEdit.Image(
               {src: this._imageURL}
             );
-            var div = document.getElementById('content-tools-editor')                        
+            var div = document.getElementById('content-tools-editor')
             div.innerHTML = image;
         };
 
