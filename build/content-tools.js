@@ -6216,6 +6216,22 @@
             ContentEdit.addCSSClass(this._domElement, 'ct-image-dialog');
             ContentEdit.addCSSClass(this._domElement, 'ct-image-dialog--empty');
             ContentEdit.addCSSClass(this._domView, 'ct-image-dialog__view');
+
+            domActions = this.constructor.createDiv(['insert-image-url']);
+            this._domControls.appendChild(domActions);
+
+            // For the Input element
+            this._domURLInput = document.createElement('input');
+            this._domURLInput.setAttribute('class', 'ct-image-dialog__input ct-control--fetch');
+            this._domURLInput.setAttribute('name', 'url');
+            this._domURLInput.setAttribute('placeholder', 'Paste image URL...');
+            this._domURLInput.setAttribute('type', 'text');
+            domActions.appendChild(this._domURLInput);
+
+            this._domFetch = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--fetch']);
+            this._domFetch.textContent = ContentEdit._('Validate Image URL');
+            domActions.appendChild(this._domFetch);
+
             domTools = this.constructor.createDiv(['ct-control-group', 'ct-control-group--left']);
             this._domControls.appendChild(domTools);
             this._domRotateCCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-ccw']);
@@ -6231,20 +6247,6 @@
             domTools.appendChild(domProgressBar);
             this._domProgress = this.constructor.createDiv(['ct-progress-bar__progress']);
             domProgressBar.appendChild(this._domProgress);
-            domActions = this.constructor.createDiv(['ct-control-group', 'ct-control-group--right']);
-            this._domControls.appendChild(domActions);
-
-            // For the Input element
-            this._domURLInput = document.createElement('input');
-            this._domURLInput.setAttribute('class', 'ct-image-dialog__input ct-control--fetch');
-            this._domURLInput.setAttribute('name', 'url');
-            this._domURLInput.setAttribute('placeholder', ContentEdit._('Paste image URL') + '...');
-            this._domURLInput.setAttribute('type', 'text');
-            domActions.appendChild(this._domURLInput);
-
-            this._domFetch = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--fetch']);
-            this._domFetch.textContent = ContentEdit._('Validate URL');
-            domActions.appendChild(this._domFetch);
 
             // this._domUpload = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--upload']);
             // this._domUpload.textContent = ContentEdit._('Upload');
@@ -6309,7 +6311,7 @@
             // Create image object in order to load image and determine its dimension
             var img = new Image();
             img.onerror = function(e) {
-                alert(ContentEdit._('Image is invalid'));
+                alert(ContentEdit._('This URL extension is a supported image file format.'));
             };
 
             img.onload = function() {
@@ -6347,8 +6349,8 @@
             this._domInput = null;
             this._domInsert = null;
             this._domProgress = null;
-            this._domRotateCCW = null;
-            this._domRotateCW = null;
+            // this._domRotateCCW = null;
+            // this._domRotateCW = null;
             this._domUpload = null;
             return this.trigger('imageUploader.unmount');
         };
@@ -6400,18 +6402,18 @@
                     return _this.trigger('imageUploader.clear');
                 };
             })(this));
-            this._domRotateCCW.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    _this.removeCropMarks();
-                    return _this.trigger('imageUploader.rotateCCW');
-                };
-            })(this));
-            this._domRotateCW.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    _this.removeCropMarks();
-                    return _this.trigger('imageUploader.rotateCW');
-                };
-            })(this));
+            // this._domRotateCCW.addEventListener('click', (function(_this) {
+            //     return function(ev) {
+            //         _this.removeCropMarks();
+            //         return _this.trigger('imageUploader.rotateCCW');
+            //     };
+            // })(this));
+            // this._domRotateCW.addEventListener('click', (function(_this) {
+            //     return function(ev) {
+            //         _this.removeCropMarks();
+            //         return _this.trigger('imageUploader.rotateCW');
+            //     };
+            // })(this));
             this._domCrop.addEventListener('click', (function(_this) {
                 return function(ev) {
                     if (_this._cropMarks) {
@@ -6432,145 +6434,145 @@
 
     })(ContentTools.DialogUI);
 
-    CropMarksUI = (function(_super) {
-        __extends(CropMarksUI, _super);
-
-        function CropMarksUI(imageSize) {
-            CropMarksUI.__super__.constructor.call(this);
-            this._bounds = null;
-            this._dragging = null;
-            this._draggingOrigin = null;
-            this._imageSize = imageSize;
-        }
-
-        CropMarksUI.prototype.mount = function(domParent, before) {
-            if (before == null) {
-                before = null;
-            }
-            this._domElement = this.constructor.createDiv(['ct-crop-marks']);
-            this._domClipper = this.constructor.createDiv(['ct-crop-marks__clipper']);
-            this._domElement.appendChild(this._domClipper);
-            this._domRulers = [this.constructor.createDiv(['ct-crop-marks__ruler', 'ct-crop-marks__ruler--top-left']), this.constructor.createDiv(['ct-crop-marks__ruler', 'ct-crop-marks__ruler--bottom-right'])];
-            this._domClipper.appendChild(this._domRulers[0]);
-            this._domClipper.appendChild(this._domRulers[1]);
-            this._domHandles = [this.constructor.createDiv(['ct-crop-marks__handle', 'ct-crop-marks__handle--top-left']), this.constructor.createDiv(['ct-crop-marks__handle', 'ct-crop-marks__handle--bottom-right'])];
-            this._domElement.appendChild(this._domHandles[0]);
-            this._domElement.appendChild(this._domHandles[1]);
-            CropMarksUI.__super__.mount.call(this, domParent, before);
-            return this._fit(domParent);
-        };
-
-        CropMarksUI.prototype.region = function() {
-            return [parseFloat(this._domHandles[0].style.top) / this._bounds[1], parseFloat(this._domHandles[0].style.left) / this._bounds[0], parseFloat(this._domHandles[1].style.top) / this._bounds[1], parseFloat(this._domHandles[1].style.left) / this._bounds[0]];
-        };
-
-        CropMarksUI.prototype.unmount = function() {
-            CropMarksUI.__super__.unmount.call(this);
-            this._domClipper = null;
-            this._domHandles = null;
-            return this._domRulers = null;
-        };
-
-        CropMarksUI.prototype._addDOMEventListeners = function() {
-            CropMarksUI.__super__._addDOMEventListeners.call(this);
-            this._domHandles[0].addEventListener('mousedown', (function(_this) {
-                return function(ev) {
-                    if (ev.button === 0) {
-                        return _this._startDrag(0, ev.clientY, ev.clientX);
-                    }
-                };
-            })(this));
-            return this._domHandles[1].addEventListener('mousedown', (function(_this) {
-                return function(ev) {
-                    if (ev.button === 0) {
-                        return _this._startDrag(1, ev.clientY, ev.clientX);
-                    }
-                };
-            })(this));
-        };
-
-        CropMarksUI.prototype._drag = function(top, left) {
-            var height, minCrop, offsetLeft, offsetTop, width;
-            if (this._dragging === null) {
-                return;
-            }
-            ContentSelect.Range.unselectAll();
-            offsetTop = top - this._draggingOrigin[1];
-            offsetLeft = left - this._draggingOrigin[0];
-            height = this._bounds[1];
-            left = 0;
-            top = 0;
-            width = this._bounds[0];
-            minCrop = Math.min(Math.min(ContentTools.MIN_CROP, height), width);
-            if (this._dragging === 0) {
-                height = parseInt(this._domHandles[1].style.top) - minCrop;
-                width = parseInt(this._domHandles[1].style.left) - minCrop;
-            } else {
-                left = parseInt(this._domHandles[0].style.left) + minCrop;
-                top = parseInt(this._domHandles[0].style.top) + minCrop;
-            }
-            offsetTop = Math.min(Math.max(top, offsetTop), height);
-            offsetLeft = Math.min(Math.max(left, offsetLeft), width);
-            this._domHandles[this._dragging].style.top = "" + offsetTop + "px";
-            this._domHandles[this._dragging].style.left = "" + offsetLeft + "px";
-            this._domRulers[this._dragging].style.top = "" + offsetTop + "px";
-            return this._domRulers[this._dragging].style.left = "" + offsetLeft + "px";
-        };
-
-        CropMarksUI.prototype._fit = function(domParent) {
-            var height, heightScale, left, ratio, rect, top, width, widthScale;
-            rect = domParent.getBoundingClientRect();
-            widthScale = rect.width / this._imageSize[0];
-            heightScale = rect.height / this._imageSize[1];
-            ratio = Math.min(widthScale, heightScale);
-            width = ratio * this._imageSize[0];
-            height = ratio * this._imageSize[1];
-            left = (rect.width - width) / 2;
-            top = (rect.height - height) / 2;
-            this._domElement.style.width = "" + width + "px";
-            this._domElement.style.height = "" + height + "px";
-            this._domElement.style.top = "" + top + "px";
-            this._domElement.style.left = "" + left + "px";
-            this._domHandles[0].style.top = '0px';
-            this._domHandles[0].style.left = '0px';
-            this._domHandles[1].style.top = "" + height + "px";
-            this._domHandles[1].style.left = "" + width + "px";
-            this._domRulers[0].style.top = '0px';
-            this._domRulers[0].style.left = '0px';
-            this._domRulers[1].style.top = "" + height + "px";
-            this._domRulers[1].style.left = "" + width + "px";
-            return this._bounds = [width, height];
-        };
-
-        CropMarksUI.prototype._startDrag = function(handleIndex, top, left) {
-            var domHandle;
-            domHandle = this._domHandles[handleIndex];
-            this._dragging = handleIndex;
-            this._draggingOrigin = [left - parseInt(domHandle.style.left), top - parseInt(domHandle.style.top)];
-            this._onMouseMove = (function(_this) {
-                return function(ev) {
-                    return _this._drag(ev.clientY, ev.clientX);
-                };
-            })(this);
-            document.addEventListener('mousemove', this._onMouseMove);
-            this._onMouseUp = (function(_this) {
-                return function(ev) {
-                    return _this._stopDrag();
-                };
-            })(this);
-            return document.addEventListener('mouseup', this._onMouseUp);
-        };
-
-        CropMarksUI.prototype._stopDrag = function() {
-            document.removeEventListener('mousemove', this._onMouseMove);
-            document.removeEventListener('mouseup', this._onMouseUp);
-            this._dragging = null;
-            return this._draggingOrigin = null;
-        };
-
-        return CropMarksUI;
-
-    })(ContentTools.AnchoredComponentUI);
+    // CropMarksUI = (function(_super) {
+    //     __extends(CropMarksUI, _super);
+    //
+    //     function CropMarksUI(imageSize) {
+    //         CropMarksUI.__super__.constructor.call(this);
+    //         this._bounds = null;
+    //         this._dragging = null;
+    //         this._draggingOrigin = null;
+    //         this._imageSize = imageSize;
+    //     }
+    //
+    //     CropMarksUI.prototype.mount = function(domParent, before) {
+    //         if (before == null) {
+    //             before = null;
+    //         }
+    //         this._domElement = this.constructor.createDiv(['ct-crop-marks']);
+    //         this._domClipper = this.constructor.createDiv(['ct-crop-marks__clipper']);
+    //         this._domElement.appendChild(this._domClipper);
+    //         this._domRulers = [this.constructor.createDiv(['ct-crop-marks__ruler', 'ct-crop-marks__ruler--top-left']), this.constructor.createDiv(['ct-crop-marks__ruler', 'ct-crop-marks__ruler--bottom-right'])];
+    //         this._domClipper.appendChild(this._domRulers[0]);
+    //         this._domClipper.appendChild(this._domRulers[1]);
+    //         this._domHandles = [this.constructor.createDiv(['ct-crop-marks__handle', 'ct-crop-marks__handle--top-left']), this.constructor.createDiv(['ct-crop-marks__handle', 'ct-crop-marks__handle--bottom-right'])];
+    //         this._domElement.appendChild(this._domHandles[0]);
+    //         this._domElement.appendChild(this._domHandles[1]);
+    //         CropMarksUI.__super__.mount.call(this, domParent, before);
+    //         return this._fit(domParent);
+    //     };
+    //
+    //     CropMarksUI.prototype.region = function() {
+    //         return [parseFloat(this._domHandles[0].style.top) / this._bounds[1], parseFloat(this._domHandles[0].style.left) / this._bounds[0], parseFloat(this._domHandles[1].style.top) / this._bounds[1], parseFloat(this._domHandles[1].style.left) / this._bounds[0]];
+    //     };
+    //
+    //     CropMarksUI.prototype.unmount = function() {
+    //         CropMarksUI.__super__.unmount.call(this);
+    //         this._domClipper = null;
+    //         this._domHandles = null;
+    //         return this._domRulers = null;
+    //     };
+    //
+    //     CropMarksUI.prototype._addDOMEventListeners = function() {
+    //         CropMarksUI.__super__._addDOMEventListeners.call(this);
+    //         this._domHandles[0].addEventListener('mousedown', (function(_this) {
+    //             return function(ev) {
+    //                 if (ev.button === 0) {
+    //                     return _this._startDrag(0, ev.clientY, ev.clientX);
+    //                 }
+    //             };
+    //         })(this));
+    //         return this._domHandles[1].addEventListener('mousedown', (function(_this) {
+    //             return function(ev) {
+    //                 if (ev.button === 0) {
+    //                     return _this._startDrag(1, ev.clientY, ev.clientX);
+    //                 }
+    //             };
+    //         })(this));
+    //     };
+    //
+    //     CropMarksUI.prototype._drag = function(top, left) {
+    //         var height, minCrop, offsetLeft, offsetTop, width;
+    //         if (this._dragging === null) {
+    //             return;
+    //         }
+    //         ContentSelect.Range.unselectAll();
+    //         offsetTop = top - this._draggingOrigin[1];
+    //         offsetLeft = left - this._draggingOrigin[0];
+    //         height = this._bounds[1];
+    //         left = 0;
+    //         top = 0;
+    //         width = this._bounds[0];
+    //         minCrop = Math.min(Math.min(ContentTools.MIN_CROP, height), width);
+    //         if (this._dragging === 0) {
+    //             height = parseInt(this._domHandles[1].style.top) - minCrop;
+    //             width = parseInt(this._domHandles[1].style.left) - minCrop;
+    //         } else {
+    //             left = parseInt(this._domHandles[0].style.left) + minCrop;
+    //             top = parseInt(this._domHandles[0].style.top) + minCrop;
+    //         }
+    //         offsetTop = Math.min(Math.max(top, offsetTop), height);
+    //         offsetLeft = Math.min(Math.max(left, offsetLeft), width);
+    //         this._domHandles[this._dragging].style.top = "" + offsetTop + "px";
+    //         this._domHandles[this._dragging].style.left = "" + offsetLeft + "px";
+    //         this._domRulers[this._dragging].style.top = "" + offsetTop + "px";
+    //         return this._domRulers[this._dragging].style.left = "" + offsetLeft + "px";
+    //     };
+    //
+    //     CropMarksUI.prototype._fit = function(domParent) {
+    //         var height, heightScale, left, ratio, rect, top, width, widthScale;
+    //         rect = domParent.getBoundingClientRect();
+    //         widthScale = rect.width / this._imageSize[0];
+    //         heightScale = rect.height / this._imageSize[1];
+    //         ratio = Math.min(widthScale, heightScale);
+    //         width = ratio * this._imageSize[0];
+    //         height = ratio * this._imageSize[1];
+    //         left = (rect.width - width) / 2;
+    //         top = (rect.height - height) / 2;
+    //         this._domElement.style.width = "" + width + "px";
+    //         this._domElement.style.height = "" + height + "px";
+    //         this._domElement.style.top = "" + top + "px";
+    //         this._domElement.style.left = "" + left + "px";
+    //         this._domHandles[0].style.top = '0px';
+    //         this._domHandles[0].style.left = '0px';
+    //         this._domHandles[1].style.top = "" + height + "px";
+    //         this._domHandles[1].style.left = "" + width + "px";
+    //         this._domRulers[0].style.top = '0px';
+    //         this._domRulers[0].style.left = '0px';
+    //         this._domRulers[1].style.top = "" + height + "px";
+    //         this._domRulers[1].style.left = "" + width + "px";
+    //         return this._bounds = [width, height];
+    //     };
+    //
+    //     CropMarksUI.prototype._startDrag = function(handleIndex, top, left) {
+    //         var domHandle;
+    //         domHandle = this._domHandles[handleIndex];
+    //         this._dragging = handleIndex;
+    //         this._draggingOrigin = [left - parseInt(domHandle.style.left), top - parseInt(domHandle.style.top)];
+    //         this._onMouseMove = (function(_this) {
+    //             return function(ev) {
+    //                 return _this._drag(ev.clientY, ev.clientX);
+    //             };
+    //         })(this);
+    //         document.addEventListener('mousemove', this._onMouseMove);
+    //         this._onMouseUp = (function(_this) {
+    //             return function(ev) {
+    //                 return _this._stopDrag();
+    //             };
+    //         })(this);
+    //         return document.addEventListener('mouseup', this._onMouseUp);
+    //     };
+    //
+    //     CropMarksUI.prototype._stopDrag = function() {
+    //         document.removeEventListener('mousemove', this._onMouseMove);
+    //         document.removeEventListener('mouseup', this._onMouseUp);
+    //         this._dragging = null;
+    //         return this._draggingOrigin = null;
+    //     };
+    //
+    //     return CropMarksUI;
+    //
+    // })(ContentTools.AnchoredComponentUI);
 
     ContentTools.LinkDialog = (function(_super) {
         var NEW_WINDOW_TARGET;
