@@ -6345,7 +6345,7 @@
             ImageDialog.__super__.unmount.call(this);
             this._domCancelUpload = null;
             this._domClear = null;
-            this._domCrop = null;
+            // this._domCrop = null;
             this._domInput = null;
             this._domInsert = null;
             this._domProgress = null;
@@ -6414,15 +6414,15 @@
             //         return _this.trigger('imageUploader.rotateCW');
             //     };
             // })(this));
-            this._domCrop.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    if (_this._cropMarks) {
-                        return _this.removeCropMarks();
-                    } else {
-                        return _this.addCropMarks();
-                    }
-                };
-            })(this));
+            // this._domCrop.addEventListener('click', (function(_this) {
+            //     return function(ev) {
+            //         if (_this._cropMarks) {
+            //             return _this.removeCropMarks();
+            //         } else {
+            //             return _this.addCropMarks();
+            //         }
+            //     };
+            // })(this));
             return this._domInsert.addEventListener('click', (function(_this) {
                 return function(ev) {
                     return _this.trigger('imageUploader.save');
