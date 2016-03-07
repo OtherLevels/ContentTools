@@ -6329,7 +6329,7 @@
             // var div = document.createElement('p');
             // div.className = 'class="ce-element ce-element--type-text ce-element--focused';
             // div.innerHTML = '<img src="' + this._imageURL + '" />';
-            var image = new ContentEdit.Image(
+            var image = ContentEdit.Image(
               {src: this._imageURL, alt=''},
               {href=this._imageURL}
             );
