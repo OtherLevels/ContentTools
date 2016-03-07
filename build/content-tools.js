@@ -6323,15 +6323,16 @@
             };
             img.src = imageURL;
             console.log("IMAGE: " + img.src);
-            return this._domClose.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    ev.preventDefault();
-                    if (_this._busy) {
-                        return;
-                    }
-                    return _this.trigger('cancel');
-                };
-            })(this));
+        };
+
+        ImageDialog.prototype.insertImage = function(imageURL, imageSize) {
+            this._imageURL = imageURL;
+            this._imageSize = imageSize;
+            if (!this._domImage) {
+                this._domImage = this.constructor.createDiv(['ct-image-dialog__image']);
+                this._domView.appendChild(this._domImage);
+            }
+            this._domImage.style['background-image'] = "url(" + imageURL + ")";
         };
 
         ImageDialog.prototype.state = function(state) {
@@ -6434,9 +6435,7 @@
             //     };
             // })(this));
             return this._domInsert.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    return _this.trigger('imageUploader.save');
-                };
+                console.log("YO IMAGE");
             })(this));
         };
 
