@@ -6322,6 +6322,16 @@
                 _this.populate(_this._imageURL, _this._imageSize);
             };
             img.src = imageURL;
+            console.log("IMAGE: " + img.src);
+            return this._domClose.addEventListener('click', (function(_this) {
+                return function(ev) {
+                    ev.preventDefault();
+                    if (_this._busy) {
+                        return;
+                    }
+                    return _this.trigger('cancel');
+                };
+            })(this));
         };
 
         ImageDialog.prototype.state = function(state) {

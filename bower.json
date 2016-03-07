@@ -2,7 +2,7 @@
   "name": "ol-content-tools",
   "description": "OtherLevels fork of ContentTools",
   "main": [
-    "build/content-tools.min.js",
+    "build/content-tools.js",
     "build/content-tools.min.css",
     "build/icons.woff"
   ],
