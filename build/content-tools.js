@@ -6332,7 +6332,8 @@
             var image = new ContentEdit.Image(
               {src: this._imageURL}
             );
-            document.getElementById('content-tools-editor').append(image);
+            var div = document.getElementById('content-tools-editor')                        
+            div.innerHTML = image;
         };
 
         ImageDialog.prototype.state = function(state) {
