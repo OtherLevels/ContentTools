@@ -6326,10 +6326,11 @@
 
         ImageDialog.prototype.insertImage = function(imageURL) {
             this._imageURL = imageURL;
-            var div = document.createElement('div');
-            div.className = 'row';
+            var div = document.createElement('p');
+            div.className = 'class="ce-element ce-element--type-text ce-element--focused';
             div.innerHTML = '<img src="' + this._imageURL + '" />';
             document.getElementById('content-tools-editor').appendChild(div);
+            return _this.trigger('cancel');
         };
 
         ImageDialog.prototype.state = function(state) {
