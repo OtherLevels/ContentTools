@@ -6326,10 +6326,13 @@
 
         ImageDialog.prototype.insertImage = function(imageURL) {
             this._imageURL = imageURL;
-            var div = document.createElement('p');
-            div.className = 'class="ce-element ce-element--type-text ce-element--focused';
-            div.innerHTML = '<img src="' + this._imageURL + '" />';
-            document.getElementById('content-tools-editor').appendChild(div);
+            // var div = document.createElement('p');
+            // div.className = 'class="ce-element ce-element--type-text ce-element--focused';
+            // div.innerHTML = '<img src="' + this._imageURL + '" />';
+            var image = new ContentEdit.Image(
+              {src: this._imageURL, alt=''}              
+            );
+            document.getElementById('content-tools-editor').appendChild(image);
         };
 
         ImageDialog.prototype.state = function(state) {
