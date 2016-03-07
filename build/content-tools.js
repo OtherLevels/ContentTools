@@ -6330,8 +6330,8 @@
             // div.className = 'class="ce-element ce-element--type-text ce-element--focused';
             // div.innerHTML = '<img src="' + this._imageURL + '" />';
             var image = ContentEdit.Image(
-              {src: this._imageURL, alt=''},
-              {href=this._imageURL}
+              {src: this._imageURL, alt: ''},
+              {href: this._imageURL}
             );
             document.getElementById('content-tools-editor').appendChild(image);
         };
