@@ -6225,28 +6225,28 @@
             this._domURLInput.setAttribute('class', 'ct-image-dialog__input ct-control--fetch');
             this._domURLInput.setAttribute('name', 'url');
             this._domURLInput.setAttribute('placeholder', 'Paste image URL...');
-            this._domURLInput.setAttribute('type', 'text');
+            this._domURLInput.setAttribute('type', 'url');
             domActions.appendChild(this._domURLInput);
 
             this._domFetch = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--fetch']);
             this._domFetch.textContent = ContentEdit._('Validate Image URL');
             domActions.appendChild(this._domFetch);
 
-            domTools = this.constructor.createDiv(['ct-control-group', 'ct-control-group--left']);
-            this._domControls.appendChild(domTools);
-            this._domRotateCCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-ccw']);
-            this._domRotateCCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' -90°');
-            domTools.appendChild(this._domRotateCCW);
-            this._domRotateCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-cw']);
-            this._domRotateCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' 90°');
-            domTools.appendChild(this._domRotateCW);
-            this._domCrop = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--crop']);
-            this._domCrop.setAttribute('data-tooltip', ContentEdit._('Crop marks'));
-            domTools.appendChild(this._domCrop);
-            domProgressBar = this.constructor.createDiv(['ct-progress-bar']);
-            domTools.appendChild(domProgressBar);
-            this._domProgress = this.constructor.createDiv(['ct-progress-bar__progress']);
-            domProgressBar.appendChild(this._domProgress);
+            // domTools = this.constructor.createDiv(['ct-control-group', 'ct-control-group--left']);
+            // this._domControls.appendChild(domTools);
+            // this._domRotateCCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-ccw']);
+            // this._domRotateCCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' -90°');
+            // domTools.appendChild(this._domRotateCCW);
+            // this._domRotateCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-cw']);
+            // this._domRotateCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' 90°');
+            // domTools.appendChild(this._domRotateCW);
+            // this._domCrop = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--crop']);
+            // this._domCrop.setAttribute('data-tooltip', ContentEdit._('Crop marks'));
+            // domTools.appendChild(this._domCrop);
+            // domProgressBar = this.constructor.createDiv(['ct-progress-bar']);
+            // domTools.appendChild(domProgressBar);
+            // this._domProgress = this.constructor.createDiv(['ct-progress-bar__progress']);
+            // domProgressBar.appendChild(this._domProgress);
 
             // this._domUpload = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--upload']);
             // this._domUpload.textContent = ContentEdit._('Upload');
