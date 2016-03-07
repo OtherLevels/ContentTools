@@ -6330,7 +6330,6 @@
             div.className = 'class="ce-element ce-element--type-text ce-element--focused';
             div.innerHTML = '<img src="' + this._imageURL + '" />';
             document.getElementById('content-tools-editor').appendChild(div);
-            return _this.trigger('cancel');
         };
 
         ImageDialog.prototype.state = function(state) {
@@ -6391,6 +6390,11 @@
             this._domInsert.addEventListener('click', (function(_this) {
                 return function(ev) {
                     _this.insertImage(_this._domURLInput.value);
+                    ev.preventDefault();
+                    if (_this._busy) {
+                        return;
+                    }
+                    return _this.trigger('cancel');
                 };
             })(this));
 
