@@ -6322,17 +6322,14 @@
                 _this.populate(_this._imageURL, _this._imageSize);
             };
             img.src = imageURL;
-            console.log("IMAGE: " + img.src);
         };
 
-        ImageDialog.prototype.insertImage = function(imageURL, imageSize) {
+        ImageDialog.prototype.insertImage = function(imageURL) {
             this._imageURL = imageURL;
-            this._imageSize = imageSize;
-            if (!this._domImage) {
-                this._domImage = this.constructor.createDiv(['ct-image-dialog__image']);
-                this._domView.appendChild(this._domImage);
-            }
-            this._domImage.style['background-image'] = "url(" + imageURL + ")";
+            var div = document.createElement('div');
+            div.className = 'row';
+            div.innerHTML = '<img src="' + this._imageURL + '" />';
+            document.getElementById('content-tools-editor').appendChild(div);
         };
 
         ImageDialog.prototype.state = function(state) {
@@ -6390,6 +6387,12 @@
                 };
             })(this));
 
+            this._domInsert.addEventListener('click', (function(_this) {
+                return function(ev) {
+                    _this.insertImage(_this._domURLInput.value);
+                };
+            })(this));
+
             this._domInput.addEventListener('change', (function(_this) {
                 return function(ev) {
                     var file;
@@ -6435,7 +6438,9 @@
             //     };
             // })(this));
             return this._domInsert.addEventListener('click', (function(_this) {
-                console.log("YO IMAGE");
+                return function(ev) {
+                    return _this.trigger('imageUploader.save');
+                };
             })(this));
         };
 
