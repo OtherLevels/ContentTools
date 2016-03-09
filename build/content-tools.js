@@ -3464,7 +3464,7 @@
         };
 
         Text.prototype._keyReturn = function(ev) {
-            var element, insertAt, lineBreakStr, selection, tail, tip;
+            var element, insertAt, lineBreakStr, selection, tail, tip, keyPressed;
             ev.preventDefault();
             if (this.content.isWhitespace()) {
                 return;
@@ -3473,7 +3473,8 @@
             selection = ContentSelect.Range.query(this._domElement);
             tip = this.content.substring(0, selection.get()[0]);
             tail = this.content.substring(selection.get()[1]);
-            if (ev.shiftKey) {
+            keyPressed = event.keyCode || event.which;
+            if (keyPressed == 13) {
                 insertAt = selection.get()[0];
                 lineBreakStr = '<br>';
                 if (this.content.length() === insertAt) {
