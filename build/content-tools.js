@@ -3368,6 +3368,10 @@
                 case 13:
                     return this._keyReturn(ev);
             }
+            if (ev.shiftKey + (ev.keyCode === 13 || ev.keyWhich === 13)) {
+              console.log("HITTING SHIFT");
+              Paragraph();
+            }
         };
 
         Text.prototype._onKeyUp = function(ev) {
@@ -3488,10 +3492,6 @@
                 selection = new ContentSelect.Range(insertAt, insertAt);
                 selection.select(this.domElement());
                 return;
-            }
-            if (ev.shiftKey) {
-              console.log("HITTING SHIFT");
-              Paragraph();
             }
             this.content = tip.trim();
             this.updateInnerHTML();
