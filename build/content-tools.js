@@ -6260,12 +6260,12 @@
             this._domInsert = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--insert']);
             this._domInsert.textContent = ContentEdit._('Insert');
             domActions.appendChild(this._domInsert);
-            this._domCancelUpload = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--cancel']);
-            this._domCancelUpload.textContent = ContentEdit._('Cancel');
-            domActions.appendChild(this._domCancelUpload);
+            // this._domCancelUpload = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--cancel']);
+            // this._domCancelUpload.textContent = ContentEdit._('Cancel');
+            // domActions.appendChild(this._domCancelUpload);
             // this._domClear = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--clear']);
             // this._domClear.textContent = ContentEdit._('Clear');
-            domActions.appendChild(this._domClear);
+            // domActions.appendChild(this._domClear);
             this._addDOMEventListeners();
             return this.trigger('imageUploader.mount');
         };
