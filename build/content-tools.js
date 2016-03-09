@@ -6118,6 +6118,7 @@
             domHeader.appendChild(this._domCaption);
             this.caption(this._caption);
             this._domClose = this.constructor.createDiv(['ct-dialog__close']);
+            this._domClose.id = 'close-image-modal';
             domHeader.appendChild(this._domClose);
             domBody = this.constructor.createDiv(['ct-dialog__body']);
             this._domElement.appendChild(domBody);
@@ -6222,6 +6223,7 @@
 
             // For the Input element
             this._domURLInput = document.createElement('input');
+            this._domURIInput.id = 'image-url';
             this._domURLInput.setAttribute('class', 'ct-image-dialog__input ct-control--fetch');
             this._domURLInput.setAttribute('name', 'url');
             this._domURLInput.setAttribute('placeholder', 'Paste image URL here...');
@@ -6317,23 +6319,16 @@
             };
 
             img.onload = function() {
-                _this._imageSize = [
-                img.width,
-                img.height];
-                _this._imageURL = img.src;
-                _this.populate(_this._imageURL, _this._imageSize);
-                this._domFetch = document.getElementById('insert-image-btn');
-                this._domFetch.textContent = ContentEdit._('Insert');
-                this._domFetch.addEventListener('click', (function(_this) {
-                    return function(ev) {
-                        _this.insertImage(_this._domURLInput.value);
-                        ev.preventDefault();
-                        if (_this._busy) {
-                            return;
-                        }
-                        return _this.trigger('cancel');
-                    };
-                })(this));
+                // _this._imageSize = [
+                // img.width,
+                // img.height];
+                // _this._imageURL = img.src;
+                // _this.populate(_this._imageURL, _this._imageSize);
+                // this._domFetch = document.getElementById('insert-image-btn');
+                // this._domFetch.textContent = ContentEdit._('Insert');
+                this._domURLInput = document.getElementById('image-url');
+                _this.insertImage(this._domURLInput.value);
+                document.getElementById('close-image-modal').click();
             };
             img.src = imageURL;
         };
