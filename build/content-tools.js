@@ -3368,7 +3368,7 @@
                 case 13:
                     return this._keyReturn(ev);
             }
-            if (ev.shiftKey && (ev.keyCode === 13) {
+            if (ev.shiftKey && ev.keyCode === 13) {
               console.log("HITTING SHIFT");
               return Paragraph.__super__.constructor.apply(this, arguments);
             }
