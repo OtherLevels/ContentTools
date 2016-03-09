@@ -6229,6 +6229,7 @@
             domActions.appendChild(this._domURLInput);
 
             this._domFetch = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--fetch']);
+            this._domFetch.id = 'insert-image-btn';
             this._domFetch.textContent = ContentEdit._('Check URL');
             domActions.appendChild(this._domFetch);
 
@@ -6311,7 +6312,8 @@
             // Create image object in order to load image and determine its dimension
             var img = new Image();
             img.onerror = function(e) {
-                alert(ContentEdit._('This URL extension is a supported image file format.'));
+                this._domFetch = document.getElementById('insert-image-btn');
+                this._domFetch.textContent = ContentEdit._('Try Again');
             };
 
             img.onload = function() {
@@ -6320,9 +6322,8 @@
                 img.height];
                 _this._imageURL = img.src;
                 _this.populate(_this._imageURL, _this._imageSize);
-                this._domFetch = document.getElementsByClassName("ct-control--fetch");
-                console.log("FETCH BUTTON: " + this._domFetch);
-                this._domFetch.textContent = ContentEdit._('Insert Image');
+                this._domFetch = document.getElementById('insert-image-btn');
+                this._domFetch.textContent = ContentEdit._('Insert');
                 this._domFetch.addEventListener('click', (function(_this) {
                     return function(ev) {
                         _this.insertImage(_this._domURLInput.value);
