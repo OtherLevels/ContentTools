@@ -6320,6 +6320,17 @@
                 img.height];
                 _this._imageURL = img.src;
                 _this.populate(_this._imageURL, _this._imageSize);
+                this._domFetch.textContent = ContentEdit._('Insert Image');
+                this._domFetch.addEventListener('click', (function(_this) {
+                    return function(ev) {
+                        _this.insertImage(_this._domURLInput.value);
+                        ev.preventDefault();
+                        if (_this._busy) {
+                            return;
+                        }
+                        return _this.trigger('cancel');
+                    };
+                })(this));
             };
             img.src = imageURL;
         };
@@ -6385,17 +6396,6 @@
                     _this.fetchImage(_this._domURLInput.value);
 
                     return _this.trigger('imageUploader.fetchReady', {});
-                };
-            })(this));
-
-            this._domInsert.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    _this.insertImage(_this._domURLInput.value);
-                    ev.preventDefault();
-                    if (_this._busy) {
-                        return;
-                    }
-                    return _this.trigger('cancel');
                 };
             })(this));
 
