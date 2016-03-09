@@ -6236,7 +6236,7 @@
             domActions.appendChild(this._domFetch);
 
             // domTools = this.constructor.createDiv(['ct-control-group', 'ct-control-group--left']);
-            // this._domControls.appendChild(domTools);
+            // this._domControls.appendChildid(domTools);
             // this._domRotateCCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-ccw']);
             // this._domRotateCCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' -90°');
             // domTools.appendChild(this._domRotateCCW);
@@ -6365,7 +6365,7 @@
             // this._domClear = null;
             // this._domCrop = null;
             this._domInput = null;
-            this._domInsert = null;
+            // this._domInsert = null;
             this._domProgress = null;
             // this._domRotateCCW = null;
             // this._domRotateCW = null;
@@ -6441,11 +6441,11 @@
             //         }
             //     };
             // })(this));
-            return this._domInsert.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    return _this.trigger('imageUploader.save');
-                };
-            })(this));
+            // return this._domInsert.addEventListener('click', (function(_this) {
+            //     return function(ev) {
+            //         return _this.trigger('imageUploader.save');
+            //     };
+            // })(this));
         };
 
         return ImageDialog;
