@@ -6224,12 +6224,12 @@
             this._domURLInput = document.createElement('input');
             this._domURLInput.setAttribute('class', 'ct-image-dialog__input ct-control--fetch');
             this._domURLInput.setAttribute('name', 'url');
-            this._domURLInput.setAttribute('placeholder', 'Paste image URL...');
+            this._domURLInput.setAttribute('placeholder', 'Paste image URL here...');
             this._domURLInput.setAttribute('type', 'url');
             domActions.appendChild(this._domURLInput);
 
             this._domFetch = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--fetch']);
-            this._domFetch.textContent = ContentEdit._('Validate Image URL');
+            this._domFetch.textContent = ContentEdit._('Check URL');
             domActions.appendChild(this._domFetch);
 
             // domTools = this.constructor.createDiv(['ct-control-group', 'ct-control-group--left']);
@@ -6263,8 +6263,8 @@
             this._domCancelUpload = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--cancel']);
             this._domCancelUpload.textContent = ContentEdit._('Cancel');
             domActions.appendChild(this._domCancelUpload);
-            this._domClear = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--clear']);
-            this._domClear.textContent = ContentEdit._('Clear');
+            // this._domClear = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--clear']);
+            // this._domClear.textContent = ContentEdit._('Clear');
             domActions.appendChild(this._domClear);
             this._addDOMEventListeners();
             return this.trigger('imageUploader.mount');
@@ -6353,7 +6353,7 @@
         ImageDialog.prototype.unmount = function() {
             ImageDialog.__super__.unmount.call(this);
             this._domCancelUpload = null;
-            this._domClear = null;
+            // this._domClear = null;
             // this._domCrop = null;
             this._domInput = null;
             this._domInsert = null;
@@ -6411,17 +6411,17 @@
                     return _this.trigger('imageUploader.fileReady', file);
                 };
             })(this));
-            this._domCancelUpload.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    return _this.trigger('imageUploader.cancelUpload');
-                };
-            })(this));
-            this._domClear.addEventListener('click', (function(_this) {
-                return function(ev) {
-                    _this.removeCropMarks();
-                    return _this.trigger('imageUploader.clear');
-                };
-            })(this));
+            // this._domCancelUpload.addEventListener('click', (function(_this) {
+            //     return function(ev) {
+            //         return _this.trigger('imageUploader.cancelUpload');
+            //     };
+            // })(this));
+            // this._domClear.addEventListener('click', (function(_this) {
+            //     return function(ev) {
+            //         _this.removeCropMarks();
+            //         return _this.trigger('imageUploader.clear');
+            //     };
+            // })(this));
             // this._domRotateCCW.addEventListener('click', (function(_this) {
             //     return function(ev) {
             //         _this.removeCropMarks();
