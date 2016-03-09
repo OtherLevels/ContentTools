@@ -6320,6 +6320,8 @@
                 img.height];
                 _this._imageURL = img.src;
                 _this.populate(_this._imageURL, _this._imageSize);
+                this._domFetch = document.getElementsByClassName("ct-control--fetch");
+                console.log("FETCH BUTTON: " + this._domFetch);
                 this._domFetch.textContent = ContentEdit._('Insert Image');
                 this._domFetch.addEventListener('click', (function(_this) {
                     return function(ev) {
