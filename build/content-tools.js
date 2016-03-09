@@ -3489,6 +3489,25 @@
                 selection.select(this.domElement());
                 return;
             }
+            if (ev.shiftKey) {
+              var app, forceAdd, paragraph, region;
+              app = ContentTools.EditorApp.get();
+              forceAdd = app.ctrlDown();
+              if (ContentTools.Tools.Heading.canApply(element) && !forceAdd) {
+                  return Paragraph.__super__.constructor.apply.call(this, element, selection, callback);
+              } else {
+                  if (element.parent().type() !== 'Region') {
+                      element = element.closest(function(node) {
+                          return node.parent().type() === 'Region';
+                      });
+                  }
+                  region = element.parent();
+                  paragraph = new ContentEdit.Text('p');
+                  region.attach(paragraph, region.children.indexOf(element) + 1);
+                  paragraph.focus();
+                  return callback(true);
+              }
+            }
             this.content = tip.trim();
             this.updateInnerHTML();
             element = new this.constructor('p', {}, tail.trim());
