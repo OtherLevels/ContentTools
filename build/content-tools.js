@@ -6249,8 +6249,8 @@
 
             // For the Input element
             this._domURLInput = document.createElement('input');
-            this._domURLInput.id = 'image-url';
-            this._domURLInput.setAttribute('class', 'insert-image-url');
+            this._domURLInput.id = 'insert-image-url';
+            this._domURLInput.setAttribute('class', 'ct-image-dialog__input ct-control--fetch');
             this._domURLInput.setAttribute('name', 'url');
             this._domURLInput.setAttribute('placeholder', 'Paste image URL here...');
             this._domURLInput.setAttribute('type', 'url');
