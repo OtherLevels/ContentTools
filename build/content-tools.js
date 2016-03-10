@@ -6233,27 +6233,27 @@
             'ct-control-group--left'
           ]);
           this._domControls.appendChild(domTools);
-          // this._domRotateCCW = this.constructor.createDiv([
-          //   'ct-control',
-          //   'ct-control--icon',
-          //   'ct-control--rotate-ccw'
-          // ]);
-          // this._domRotateCCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' -90Â°');
-          // domTools.appendChild(this._domRotateCCW);
-          // this._domRotateCW = this.constructor.createDiv([
-          //   'ct-control',
-          //   'ct-control--icon',
-          //   'ct-control--rotate-cw'
-          // ]);
-          // this._domRotateCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' 90Â°');
-          // domTools.appendChild(this._domRotateCW);
-          // this._domCrop = this.constructor.createDiv([
-          //   'ct-control',
-          //   'ct-control--icon',
-          //   'ct-control--crop'
-          // ]);
-          // this._domCrop.setAttribute('data-tooltip', ContentEdit._('Crop marks'));
-          // domTools.appendChild(this._domCrop);
+          this._domRotateCCW = this.constructor.createDiv([
+            'ct-control',
+            'ct-control--icon',
+            'ct-control--rotate-ccw'
+          ]);
+          this._domRotateCCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' -90Â°');
+          domTools.appendChild(this._domRotateCCW);
+          this._domRotateCW = this.constructor.createDiv([
+            'ct-control',
+            'ct-control--icon',
+            'ct-control--rotate-cw'
+          ]);
+          this._domRotateCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' 90Â°');
+          domTools.appendChild(this._domRotateCW);
+          this._domCrop = this.constructor.createDiv([
+            'ct-control',
+            'ct-control--icon',
+            'ct-control--crop'
+          ]);
+          this._domCrop.setAttribute('data-tooltip', ContentEdit._('Crop marks'));
+          domTools.appendChild(this._domCrop);
           domProgressBar = this.constructor.createDiv([
             'ct-progress-bar'
           ]);
@@ -6300,13 +6300,13 @@
           // this._domInput.setAttribute('accept', 'image/*');
           // this._domUpload.appendChild(this._domInput);
 
-          // this._domInsert = this.constructor.createDiv([
-          //   'ct-control',
-          //   'ct-control--text',
-          //   'ct-control--insert'
-          // ]);
-          // this._domInsert.textContent = ContentEdit._('Insert');
-          // domActions.appendChild(this._domInsert);
+          this._domInsert = this.constructor.createDiv([
+            'ct-control',
+            'ct-control--text',
+            'ct-control--insert'
+          ]);
+          this._domInsert.textContent = ContentEdit._('Insert');
+          domActions.appendChild(this._domInsert);
           // this._domCancelUpload = this.constructor.createDiv([
           //   'ct-control',
           //   'ct-control--text',
@@ -6378,11 +6378,14 @@
               img.height
             ];
             _this._imageURL = img.src;
-            // _this.populate(_this._imageURL, _this._imageSize);
-            return function (ev) {
-              _this.save(_this._imageURL, _this._imageSize, {});
-              return _this.trigger('imageUploader.save');
-            };
+            _this.populate(_this._imageURL, _this._imageSize);
+            this._domFetch = document.getElementById('insert-image-btn');
+            this._domFetch.textContent = ContentEdit._('Insert');
+            return this._domFetch.addEventListener('click', (function (_this) {
+              return function (ev) {
+                _this.save(_this._imageURL, _this._imageSize, {});
+                return _this.trigger('imageUploader.save');
+              };
           };
           img.src = imageURL;
         };
