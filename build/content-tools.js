@@ -3371,11 +3371,12 @@
                 keyMap[ev.keyCode] = true;
                 if (keyMap[13] && keyMap[16]) {
                     console.log("ENTER + SHIFT");
+                    console.log(keyMap[ev.keyCode]);
                 } else if (keyMap[13]) {
                     console.log("ENTER");
                     // return this._keyReturn(ev);
                 } else if (keyMap[16]) {
-                    console.log("ENTER");
+                    console.log("SHIFT");
                   }
             }
         };
@@ -3503,7 +3504,7 @@
                 selection.select(this.domElement());
                 return;
             }
-            if (ev.shiftKey) {
+            if (event.shiftKey) {
                 console.log("SHIFT");
                 return Paragraph.__super__.constructor.apply(this, arguments);
             }
