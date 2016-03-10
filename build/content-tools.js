@@ -6332,7 +6332,8 @@
                 // this._domFetch = document.getElementById('insert-image-btn');
                 // this._domFetch.textContent = ContentEdit._('Insert');
                 this._domURLInput = document.getElementById('image-url');
-                _this.insertImage(this._domURLInput.value);
+                // _this.insertImage(this._domURLInput.value);
+                return _this.trigger('imageUploader.save');
                 document.getElementById('close-image-modal').click();
             };
             img.src = imageURL;
@@ -6386,9 +6387,10 @@
                 return function(ev) {
                     if (ev.keyCode !== 13 || !_this._domURLInput.value) return;
 
-                    _this.fetchImage(_this._domURLInput.value);
+                    // _this.fetchImage(_this._domURLInput.value);
+                    return _this.trigger('imageUploader.save');
 
-                    return _this.trigger('imageUploader.fetchReady', {});
+                    // return _this.trigger('imageUploader.fetchReady', {});
                 };
             })(this));
 
@@ -6396,9 +6398,10 @@
                 return function(ev) {
                     if (!_this._domURLInput.value) return;
 
-                    _this.fetchImage(_this._domURLInput.value);
+                    // _this.fetchImage(_this._domURLInput.value);
+                    return _this.trigger('imageUploader.save');
 
-                    return _this.trigger('imageUploader.fetchReady', {});
+                    // return _this.trigger('imageUploader.fetchReady', {});
                 };
             })(this));
 
