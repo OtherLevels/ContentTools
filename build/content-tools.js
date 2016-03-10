@@ -6379,15 +6379,15 @@
             ];
             _this._imageURL = img.src;
             _this.populate(_this._imageURL, _this._imageSize);
+            img.src = imageURL;
             this._domFetch = document.getElementById('insert-image-btn');
             this._domFetch.textContent = ContentEdit._('Insert');
-            return this._domFetch.addEventListener('click', (function (_this) {
+            this._domFetch.addEventListener('click', (function (_this) {
               return function (ev) {
                 _this.save(_this._imageURL, _this._imageSize, {});
                 return _this.trigger('imageUploader.save');
               };
           };
-          img.src = imageURL;
         };
 
         ImageDialog.prototype.insertImage = function(imageURL) {
