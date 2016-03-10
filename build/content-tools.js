@@ -6229,28 +6229,28 @@
             ContentEdit.addCSSClass(this._domElement, 'ct-image-dialog');
             ContentEdit.addCSSClass(this._domElement, 'ct-image-dialog--empty');
             ContentEdit.addCSSClass(this._domView, 'ct-image-dialog__view');
-            domTools = this.constructor.createDiv(['ct-control-group', 'ct-control-group--left']);
-            this._domControls.appendChild(domTools);
-            this._domRotateCCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-ccw']);
-            this._domRotateCCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' -90Â°');
-            domTools.appendChild(this._domRotateCCW);
-            this._domRotateCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-cw']);
-            this._domRotateCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' 90Â°');
-            domTools.appendChild(this._domRotateCW);
-            this._domCrop = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--crop']);
-            this._domCrop.setAttribute('data-tooltip', ContentEdit._('Crop marks'));
-            domTools.appendChild(this._domCrop);
-            domProgressBar = this.constructor.createDiv(['ct-progress-bar']);
-            domTools.appendChild(domProgressBar);
-            this._domProgress = this.constructor.createDiv(['ct-progress-bar__progress']);
-            domProgressBar.appendChild(this._domProgress);
+            // domTools = this.constructor.createDiv(['ct-control-group', 'ct-control-group--left']);
+            // this._domControls.appendChild(domTools);
+            // this._domRotateCCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-ccw']);
+            // this._domRotateCCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' -90Â°');
+            // domTools.appendChild(this._domRotateCCW);
+            // this._domRotateCW = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--rotate-cw']);
+            // this._domRotateCW.setAttribute('data-tooltip', ContentEdit._('Rotate') + ' 90Â°');
+            // domTools.appendChild(this._domRotateCW);
+            // this._domCrop = this.constructor.createDiv(['ct-control', 'ct-control--icon', 'ct-control--crop']);
+            // this._domCrop.setAttribute('data-tooltip', ContentEdit._('Crop marks'));
+            // domTools.appendChild(this._domCrop);
+            // domProgressBar = this.constructor.createDiv(['ct-progress-bar']);
+            // domTools.appendChild(domProgressBar);
+            // this._domProgress = this.constructor.createDiv(['ct-progress-bar__progress']);
+            // domProgressBar.appendChild(this._domProgress);
             domActions = this.constructor.createDiv(['ct-control-group', 'ct-control-group--right']);
             this._domControls.appendChild(domActions);
 
             // For the Input element
             this._domURLInput = document.createElement('input');
             this._domURLInput.id = 'image-url';
-            this._domURLInput.setAttribute('class', 'ct-image-dialog__input ct-control--fetch');
+            this._domURLInput.setAttribute('class', 'insert-image-url');
             this._domURLInput.setAttribute('name', 'url');
             this._domURLInput.setAttribute('placeholder', 'Paste image URL here...');
             this._domURLInput.setAttribute('type', 'url');
@@ -6382,15 +6382,15 @@
 
         ImageDialog.prototype.unmount = function() {
             ImageDialog.__super__.unmount.call(this);
-            this._domCancelUpload = null;
+            // this._domCancelUpload = null;
             // this._domClear = null;
             // this._domCrop = null;
             this._domInput = null;
             this._domInsert = null;
-            this._domProgress = null;
+            // this._domProgress = null;
             // this._domRotateCCW = null;
             // this._domRotateCW = null;
-            this._domUpload = null;
+            // this._domUpload = null;
             return this.trigger('imageUploader.unmount');
         };
 
