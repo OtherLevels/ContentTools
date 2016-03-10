@@ -3350,6 +3350,13 @@
         };
 
         Text.prototype._onKeyDown = function(ev) {
+            var map = {13: false, 16: false};
+            if (e.keyCode in map) {
+                map[e.keyCode] = true;
+                if (map[13] && map[16]) {
+                  console.log("FIRE SHIFT + ENTER KEY");
+                }
+            }
             switch (ev.keyCode) {
                 case 40:
                     return this._keyDown(ev);
@@ -3367,10 +3374,6 @@
                     return this._keyDelete(ev);
                 case 13:
                     return this._keyReturn(ev);
-            }
-            if (ev.shiftKey && ev.keyCode === 13) {
-              console.log("HITTING SHIFT");
-              return Paragraph.__super__.constructor.apply(this, arguments);
             }
         };
 
