@@ -6176,8 +6176,8 @@
     })(ContentTools.WidgetUI);
 
 
-      ContentTools.ImageDialog = (function (superClass) {
-        extend(ImageDialog, superClass);
+      ContentTools.ImageDialog = (function (_super) {
+        __extends(ImageDialog, _super);
 
         function ImageDialog() {
           ImageDialog.__super__.constructor.call(this, 'Insert image');
