@@ -3351,8 +3351,8 @@
 
         Text.prototype._onKeyDown = function(ev) {
             var map = {13: false, 16: false};
-            if (e.keyCode in map) {
-                map[e.keyCode] = true;
+            if (ev.keyCode in map) {
+                map[ev.keyCode] = true;
                 if (map[13] && map[16]) {
                   console.log("FIRE SHIFT + ENTER KEY");
                 }
