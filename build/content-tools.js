@@ -3350,24 +3350,27 @@
         };
 
         Text.prototype._onKeyDown = function(ev) {
-            switch (ev.keyCode) {
-                case 40:
-                    return this._keyDown(ev);
-                case 37:
-                    return this._keyLeft(ev);
-                case 39:
-                    return this._keyRight(ev);
-                case 38:
-                    return this._keyUp(ev);
-                case 9:
-                    return this._keyTab(ev);
-                case 8:
-                    return this._keyBack(ev);
-                case 46:
-                    return this._keyDelete(ev);
-                case 13:
-                    console.log("ENTER");
-                    return this._keyReturn(ev);
+            if (ev.keyCode === 40) {
+                return this._keyDown(ev);
+            } else if (ev.keyCode === 37) {
+                return this._keyLeft(ev);
+            } else if (ev.keyCode === 39) {
+                return this._keyRight(ev);
+            } else if (ev.keyCode === 38) {
+                return this._keyUp(ev);
+            } else if (ev.keyCode === 9) {
+                return this._keyTab(ev);
+            } else if (ev.keyCode === 8) {
+                return this._keyBack(ev);
+            } else if (ev.keyCode === 46) {
+                return this._keyDelete(ev);
+            } else if (ev.keyCode === 13 && ev.keyCode === 16) {
+                console.log("ENTER + SHIFT");
+            } else if (ev.keyCode === 13) {
+                console.log("ENTER");
+                // return this._keyReturn(ev);
+            } else if (ev.keyCode === 16) {
+              console.log("SHIFT");
             }
         };
 
