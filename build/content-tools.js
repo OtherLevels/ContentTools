@@ -6387,10 +6387,9 @@
                 return function(ev) {
                     if (ev.keyCode !== 13 || !_this._domURLInput.value) return;
 
-                    // _this.fetchImage(_this._domURLInput.value);
-                    return _this.trigger('imageUploader.save');
+                    _this.fetchImage(_this._domURLInput.value);
 
-                    // return _this.trigger('imageUploader.fetchReady', {});
+                    return _this.trigger('imageUploader.fetchReady', {});
                 };
             })(this));
 
@@ -6398,10 +6397,9 @@
                 return function(ev) {
                     if (!_this._domURLInput.value) return;
 
-                    // _this.fetchImage(_this._domURLInput.value);
-                    return _this.trigger('imageUploader.save');
+                    _this.fetchImage(_this._domURLInput.value);
 
-                    // return _this.trigger('imageUploader.fetchReady', {});
+                    return _this.trigger('imageUploader.fetchReady', {});
                 };
             })(this));
 
