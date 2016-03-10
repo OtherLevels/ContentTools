@@ -6244,9 +6244,7 @@
             // domTools.appendChild(domProgressBar);
             // this._domProgress = this.constructor.createDiv(['ct-progress-bar__progress']);
             // domProgressBar.appendChild(this._domProgress);
-            domImgActions = this.constructor.createDiv(['insert-image-url']);
-            this._domControls.appendChild(domImgActions);
-            domActions = this.constructor.createDiv(['ct-control-group', 'ct-control-group--right']);
+            domActions = this.constructor.createDiv(['insert-image-url']);
             this._domControls.appendChild(domActions);
 
             // For the Input element
@@ -6256,7 +6254,7 @@
             this._domURLInput.setAttribute('name', 'url');
             this._domURLInput.setAttribute('placeholder', 'Paste image URL here...');
             this._domURLInput.setAttribute('type', 'url');
-            domImgActions.appendChild(this._domURLInput);
+            domActions.appendChild(this._domURLInput);
 
             this._domFetch = this.constructor.createDiv(['ct-control', 'ct-control--text', 'ct-control--fetch']);
             this._domFetch.id = 'insert-image-btn';
