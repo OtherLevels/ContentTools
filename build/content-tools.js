@@ -6339,13 +6339,11 @@
         };
 
         ImageDialog.prototype.insertImage = function(imageURL) {
-            this._imageURL = imageURL;
-            var div = document.getElementById('content-tools-editor')
-            var image = '<div class="ce-element ce-element--type-image ce-element--focused" style="background-image: url("' + this._imageURL + '")></div>';
-            div.appendChild(image);
-            // var image = new ContentEdit.Image(
-            //   {src: this._imageURL}
-            // );
+            var elem = document.createElement('img');
+            elem.src = imageUrl;
+            elem.className = "ce-element";
+            elem.className += " ce-element--type-image";
+            document.getElementById('content-tools-editor').appendChild(elem);
         };
 
         ImageDialog.prototype.state = function(state) {
