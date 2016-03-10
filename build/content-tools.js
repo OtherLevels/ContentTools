@@ -2365,13 +2365,13 @@
                     return ev.preventDefault();
                 };
             })(this));
-            var keyMappings = {13: false, 16: false};
             this._domElement.addEventListener('keydown', (function(_this) {
                 return function(ev) {
                     return _this._onKeyDown(ev);
                 };
             })(this));
             this._domElement.addEventListener('keyup', (function(_this) {
+                var keyMappings = {13: false, 16: false};
                 return function(ev) {
                     if (ev.keyCode in keyMappings) {
                         keyMappings[ev.keyCode] = false;
@@ -3354,6 +3354,7 @@
         };
 
         Text.prototype._onKeyDown = function(ev) {
+            var keyMappings = {13: false, 16: false};
             if (ev.keyCode in keyMappings) {
                 keyMappings[ev.keyCode] = true;
                 if (keyMappings[13] && keyMappings[16]) {
