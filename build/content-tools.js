@@ -2372,7 +2372,8 @@
             })(this));
             this._domElement.addEventListener('keyup', (function(_this) {
                 return function(ev) {
-                    return _this._onKeyUp(ev);
+
+                  return _this._onKeyUp(ev);
                 };
             })(this));
             this._domElement.addEventListener('mousedown', (function(_this) {
@@ -3350,6 +3351,7 @@
         };
 
         Text.prototype._onKeyDown = function(ev) {
+            var keyMap = {13: false, 16: false};
             if (ev.keyCode === 40) {
                 return this._keyDown(ev);
             } else if (ev.keyCode === 37) {
@@ -3364,17 +3366,25 @@
                 return this._keyBack(ev);
             } else if (ev.keyCode === 46) {
                 return this._keyDelete(ev);
-            } else if (ev.keyCode === 13 && ev.keyCode === 16) {
-                console.log("ENTER + SHIFT");
-            } else if (ev.keyCode === 13) {
-                console.log("ENTER");
-                // return this._keyReturn(ev);
-            } else if (ev.keyCode === 16) {
-              console.log("SHIFT");
+            }
+            if (ev.keyCode in keyMap) {
+                keyMap[ev.keyCode] = true;
+                if (keyMap[13] && keyMap[16]) {
+                    console.log("ENTER + SHIFT");
+                } else if (keyMap[13]) {
+                    console.log("ENTER");
+                    // return this._keyReturn(ev);
+                } else if (keyMap[16]) {
+                    console.log("ENTER");
+                  }
             }
         };
 
         Text.prototype._onKeyUp = function(ev) {
+            var keyMap = {13: false, 16: false};
+            if (ev.keyCode in keyMap) {
+                keyMap[ev.keyCode] = false;
+            }
             Text.__super__._onKeyUp.call(this, ev);
             return this._syncContent();
         };
