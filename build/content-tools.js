@@ -3370,7 +3370,7 @@
                     return this._keyReturn(ev);
                 case 16:
                     console.log('SHIFT');
-                    document.getElementById('paragraph-icon').click();
+                    document.getElementsByClassName('ct-tool--paragraph').click();
             }
         };
 
@@ -8495,8 +8495,6 @@
         Paragraph.icon = 'paragraph';
 
         Paragraph.tagName = 'p';
-
-        Paragraph.id = 'paragraph-icon'
 
         Paragraph.canApply = function(element, selection) {
             return element !== void 0;
