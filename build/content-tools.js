@@ -2371,11 +2371,7 @@
                 };
             })(this));
             this._domElement.addEventListener('keyup', (function(_this) {
-                var keyMappings = {13: false, 16: false};
                 return function(ev) {
-                    if (ev.keyCode in keyMappings) {
-                        keyMappings[ev.keyCode] = false;
-                    }
                     return _this._onKeyUp(ev);
                 };
             })(this));
@@ -3354,15 +3350,6 @@
         };
 
         Text.prototype._onKeyDown = function(ev) {
-            var keyMappings = {13: false, 16: false};
-            if (ev.keyCode in keyMappings) {
-                keyMappings[ev.keyCode] = true;
-                if (keyMappings[13] && keyMappings[16]) {
-                    console.log("LAUNCH HERE");
-                } else if (keyMappings[13]) {
-                    return this._keyReturn(ev);
-                }
-            }
             switch (ev.keyCode) {
                 case 40:
                     return this._keyDown(ev);
@@ -3378,6 +3365,9 @@
                     return this._keyBack(ev);
                 case 46:
                     return this._keyDelete(ev);
+                case 13:
+                    console.log("ENTER");
+                    return this._keyReturn(ev);
             }
         };
 
@@ -3499,6 +3489,10 @@
                 selection = new ContentSelect.Range(insertAt, insertAt);
                 selection.select(this.domElement());
                 return;
+            }
+            if (ev.shiftKey) {
+                console.log("SHIFT");
+                return Paragraph.__super__.constructor.apply(this, arguments);
             }
             this.content = tip.trim();
             this.updateInnerHTML();
