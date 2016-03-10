@@ -3367,10 +3367,7 @@
                     return this._keyDelete(ev);
                 case 13:
                     console.log('ENTER');
-                    return this._keyReturn(ev);
-                case 16:
-                    console.log('SHIFT');
-                    document.getElementsByClassName('ct-tool--paragraph').click();
+                    return this._keyReturn(ev);                
             }
         };
 
