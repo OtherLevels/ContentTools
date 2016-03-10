@@ -2370,7 +2370,7 @@
                 return function(ev) {
                     if (ev.keyCode in keyMappings) {
                         keyMappings[ev.keyCode] = true;
-                        if (keyMappings[13] && map[16]) {
+                        if (keyMappings[13] && keyMappings[16]) {
                             console.log("LAUNCH HERE");
                         }
                     }
