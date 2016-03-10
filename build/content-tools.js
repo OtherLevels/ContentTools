@@ -3349,14 +3349,7 @@
             return this._flagIfEmpty();
         };
 
-        Text.prototype._onKeyDown = function(ev) {
-            var map = {13: false, 16: false};
-            if (ev.keyCode in map) {
-                map[ev.keyCode] = true;
-                if (map[13] && map[16]) {
-                  console.log("FIRE SHIFT + ENTER KEY");
-                }
-            }
+        Text.prototype._onKeyDown = function(ev) {      
             switch (ev.keyCode) {
                 case 40:
                     return this._keyDown(ev);
@@ -3374,6 +3367,10 @@
                     return this._keyDelete(ev);
                 case 13:
                     return this._keyReturn(ev);
+                case 13 && 16:
+                    console.log("SHIFT + ENTER");
+                case 16:
+                    console.log("SHIFT");
             }
         };
 
