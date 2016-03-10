@@ -3366,8 +3366,7 @@
                 case 46:
                     return this._keyDelete(ev);
                 case 13:
-                    console.log('ENTER');
-                    return this._keyReturn(ev);                
+                    return this._keyReturn(ev);
             }
         };
 
@@ -6342,7 +6341,8 @@
         ImageDialog.prototype.insertImage = function(imageURL) {
             this._imageURL = imageURL;
             var div = document.getElementById('content-tools-editor')
-            div.innerHTML = '<img src="' + this._imageURL + '" />';
+            var image = '<div class="ce-element ce-element--type-image ce-element--focused" style="background-image: url("'this._imageURL + '")></div>';
+            div.appendChild(image);
             // var image = new ContentEdit.Image(
             //   {src: this._imageURL}
             // );
