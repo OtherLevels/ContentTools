@@ -2368,12 +2368,6 @@
             var keyMappings = {13: false, 16: false};
             this._domElement.addEventListener('keydown', (function(_this) {
                 return function(ev) {
-                    if (ev.keyCode in keyMappings) {
-                        keyMappings[ev.keyCode] = true;
-                        if (keyMappings[13] && keyMappings[16]) {
-                            console.log("LAUNCH HERE");
-                        }
-                    }
                     return _this._onKeyDown(ev);
                 };
             })(this));
@@ -3360,6 +3354,14 @@
         };
 
         Text.prototype._onKeyDown = function(ev) {
+            if (ev.keyCode in keyMappings) {
+                keyMappings[ev.keyCode] = true;
+                if (keyMappings[13] && keyMappings[16]) {
+                    console.log("LAUNCH HERE");
+                } else if (keyMappings[13]) {
+                    return this._keyReturn(ev);
+                }
+            }
             switch (ev.keyCode) {
                 case 40:
                     return this._keyDown(ev);
@@ -3375,8 +3377,6 @@
                     return this._keyBack(ev);
                 case 46:
                     return this._keyDelete(ev);
-                case 13:
-                    return this._keyReturn(ev);
             }
         };
 
