@@ -6339,10 +6339,11 @@
         };
 
         ImageDialog.prototype.insertImage = function(imageURL) {
+            this._imageURL = imageURL;
             var elem = document.createElement('img');
             elem.src = imageUrl;
             elem.className = "ce-element";
-            elem.className += " ce-element--type-image";
+            elem.className += "ce-element--type-image";
             document.getElementById('content-tools-editor').appendChild(elem);
         };
 
