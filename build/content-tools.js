@@ -6291,15 +6291,15 @@
           //   'ct-control--text',
           //   'ct-control--upload'
           // ]);
-          this._domUpload.textContent = ContentEdit._('Upload');
-          domActions.appendChild(this._domUpload);
+          // this._domUpload.textContent = ContentEdit._('Upload');
+          // domActions.appendChild(this._domUpload);
 
-          this._domInput = document.createElement('input');
-          this._domInput.setAttribute('class', 'ct-image-dialog__file-upload');
-          this._domInput.setAttribute('name', 'file');
-          this._domInput.setAttribute('type', 'file');
-          this._domInput.setAttribute('accept', 'image/*');
-          this._domUpload.appendChild(this._domInput);
+          // this._domInput = document.createElement('input');
+          // this._domInput.setAttribute('class', 'ct-image-dialog__file-upload');
+          // this._domInput.setAttribute('name', 'file');
+          // this._domInput.setAttribute('type', 'file');
+          // this._domInput.setAttribute('accept', 'image/*');
+          // this._domUpload.appendChild(this._domInput);
 
           this._domInsert = this.constructor.createDiv([
             'ct-control',
@@ -6452,18 +6452,18 @@
             };
           })(this));
 
-          this._domInput.addEventListener('change', (function (_this) {
-            return function (ev) {
-              var file;
-              file = ev.target.files[0];
-              ev.target.value = '';
-              if (ev.target.value) {
-                ev.target.type = 'text';
-                ev.target.type = 'file';
-              }
-              return _this.trigger('imageUploader.fileReady', file);
-            };
-          })(this));
+          // this._domInput.addEventListener('change', (function (_this) {
+          //   return function (ev) {
+          //     var file;
+          //     file = ev.target.files[0];
+          //     ev.target.value = '';
+          //     if (ev.target.value) {
+          //       ev.target.type = 'text';
+          //       ev.target.type = 'file';
+          //     }
+          //     return _this.trigger('imageUploader.fileReady', file);
+          //   };
+          // })(this));
           // this._domCancelUpload.addEventListener('click', (function (_this) {
           //   return function (ev) {
           //     return _this.trigger('imageUploader.cancelUpload');
