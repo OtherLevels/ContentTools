@@ -2365,13 +2365,23 @@
                     return ev.preventDefault();
                 };
             })(this));
+            var keyMappings = {13: false, 16: false};
             this._domElement.addEventListener('keydown', (function(_this) {
                 return function(ev) {
+                    if (ev.keyCode in keyMappings) {
+                        keyMappings[ev.keyCode] = true;
+                        if (keyMappings[13] && map[16]) {
+                            console.log("LAUNCH HERE");
+                        }
+                    }
                     return _this._onKeyDown(ev);
                 };
             })(this));
             this._domElement.addEventListener('keyup', (function(_this) {
                 return function(ev) {
+                    if (ev.keyCode in keyMappings) {
+                        keyMappings[ev.keyCode] = false;
+                    }
                     return _this._onKeyUp(ev);
                 };
             })(this));
@@ -3349,7 +3359,7 @@
             return this._flagIfEmpty();
         };
 
-        Text.prototype._onKeyDown = function(ev) {      
+        Text.prototype._onKeyDown = function(ev) {
             switch (ev.keyCode) {
                 case 40:
                     return this._keyDown(ev);
@@ -3367,10 +3377,6 @@
                     return this._keyDelete(ev);
                 case 13:
                     return this._keyReturn(ev);
-                case 13 && 16:
-                    console.log("SHIFT + ENTER");
-                case 16:
-                    console.log("SHIFT");
             }
         };
 
