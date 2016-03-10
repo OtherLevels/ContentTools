@@ -6348,17 +6348,17 @@
                 img.height];
                 _this._imageURL = img.src;
                 _this.populate(_this._imageURL, _this._imageSize);
+                this._domFetch = document.getElementById('insert-image-btn');
+                this._domFetch.className += 'hidden';                
             };
             img.src = imageURL;
         };
 
-        ImageDialog.prototype.insertImage = function(imageURL) {
-            this._imageURL = imageURL;
-            var elem = document.createElement('img');
-            elem.src = this._imageURL;
-            elem.className = "ce-element";
-            elem.className += " ce-element--type-image";
-            document.getElementById('content-tools-editor').appendChild(elem);
+        ImageDialog.prototype.insertImage = function(btnTxt) {
+            this._btnTxt = btnTxt;
+            if (this._btnText == 'Insert Image') {
+                console.log("INSERTING");
+            }
         };
 
 
