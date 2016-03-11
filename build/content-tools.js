@@ -5748,7 +5748,7 @@
         };
 
         ToolboxUI.prototype._addDOMEventListeners = function() {
-            this._domGrip.addEventListener('mousedown', this._onStartDragging);
+            // this._domGrip.addEventListener('mousedown', this._onStartDragging);
             this._handleResize = (function(_this) {
                 return function(ev) {
                     var containResize;
