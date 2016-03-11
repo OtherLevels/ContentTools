@@ -5683,11 +5683,12 @@
             var coord, domToolGroup, i, position, restore, tool, toolGroup, toolName, _i, _j, _len, _len1, _ref;
             this._domElement = this.constructor.createDiv(['ct-widget', 'ct-toolbox']);
             this.parent().domElement().appendChild(this._domElement);
-            this._domGrip = this.constructor.createDiv(['ct-toolbox__grip', 'ct-grip']);
-            this._domElement.appendChild(this._domGrip);
-            this._domGrip.appendChild(this.constructor.createDiv(['ct-grip__bump']));
-            this._domGrip.appendChild(this.constructor.createDiv(['ct-grip__bump']));
-            this._domGrip.appendChild(this.constructor.createDiv(['ct-grip__bump']));
+            // Hide grip icons
+            // this._domGrip = this.constructor.createDiv(['ct-toolbox__grip', 'ct-grip']);
+            // this._domElement.appendChild(this._domGrip);
+            // this._domGrip.appendChild(this.constructor.createDiv(['ct-grip__bump']));
+            // this._domGrip.appendChild(this.constructor.createDiv(['ct-grip__bump']));
+            // this._domGrip.appendChild(this.constructor.createDiv(['ct-grip__bump']));
             _ref = this._tools;
             for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
                 toolGroup = _ref[i];
