@@ -5657,7 +5657,7 @@
             this._tools = tools;
             this._dragging = false;
             this._draggingOffset = null;
-            this._domGrip = null;
+            // this._domGrip = null;
             this._toolUIs = {};
         }
 
@@ -5744,7 +5744,7 @@
 
         ToolboxUI.prototype.unmount = function() {
             ToolboxUI.__super__.unmount.call(this);
-            return this._domGrip = null;
+            // return this._domGrip = null;
         };
 
         ToolboxUI.prototype._addDOMEventListeners = function() {
@@ -5876,9 +5876,9 @@
         };
 
         ToolboxUI.prototype._removeDOMEventListeners = function() {
-            if (this.isMounted()) {
-                this._domGrip.removeEventListener('mousedown', this._onStartDragging);
-            }
+            // if (this.isMounted()) {
+            //     this._domGrip.removeEventListener('mousedown', this._onStartDragging);
+            // }
             window.removeEventListener('keydown', this._handleKeyDown);
             window.removeEventListener('resize', this._handleResize);
             window.removeEventListener('resize', this._handleResize);
