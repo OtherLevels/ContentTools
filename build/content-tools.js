@@ -5653,7 +5653,7 @@
             this._tools = tools;
             this._dragging = false;
             this._draggingOffset = null;
-            // this._domGrip = null;
+            // this._domElement = null;
             this._toolUIs = {};
         }
 
@@ -5678,6 +5678,7 @@
         ToolboxUI.prototype.mount = function() {
             var coord, domToolGroup, i, position, restore, tool, toolGroup, toolName, _i, _j, _len, _len1, _ref;
             this._domElement = this.constructor.createDiv(['ct-widget', 'ct-toolbox']);
+            this._domElement.id = 'editor-toolbox';
             this.parent().domElement().appendChild(this._domElement);
             // Hide grip icons
             // this._domGrip = this.constructor.createDiv(['ct-toolbox__grip', 'ct-grip']);
@@ -5740,11 +5741,11 @@
 
         ToolboxUI.prototype.unmount = function() {
             ToolboxUI.__super__.unmount.call(this);
-            // return this._domGrip = null;
+            return this._domElement = null;
         };
 
         ToolboxUI.prototype._addDOMEventListeners = function() {
-            // this._domGrip.addEventListener('mousedown', this._onStartDragging);
+            this._domElement.addEventListener('mousedown', this._onStartDragging);
             this._handleResize = (function(_this) {
                 return function(ev) {
                     var containResize;
@@ -5872,9 +5873,9 @@
         };
 
         ToolboxUI.prototype._removeDOMEventListeners = function() {
-            // if (this.isMounted()) {
-            //     this._domGrip.removeEventListener('mousedown', this._onStartDragging);
-            // }
+            if (this.isMounted()) {
+                this._domElement.removeEventListener('mousedown', this._onStartDragging);
+            }
             window.removeEventListener('keydown', this._handleKeyDown);
             window.removeEventListener('resize', this._handleResize);
             window.removeEventListener('resize', this._handleResize);
