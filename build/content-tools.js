@@ -1648,7 +1648,7 @@
         HELPER_CHAR_LIMIT: 250,
         INDENT: '    ',
         LANGUAGE: 'en',
-        PREFER_LINE_BREAKS: true,
+        PREFER_LINE_BREAKS: false,
         RESIZE_CORNER_SIZE: 15,
         _translations: {},
         _: function(s) {
@@ -3489,10 +3489,6 @@
                 selection = new ContentSelect.Range(insertAt, insertAt);
                 selection.select(this.domElement());
                 return;
-            }
-            if (event.shiftKey) {
-                console.log("SHIFT");
-                return Paragraph.__super__.constructor.apply(this, arguments);
             }
             this.content = tip.trim();
             this.updateInnerHTML();

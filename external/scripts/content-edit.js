@@ -1616,7 +1616,7 @@
     HELPER_CHAR_LIMIT: 250,
     INDENT: '    ',
     LANGUAGE: 'en',
-    PREFER_LINE_BREAKS: true,
+    PREFER_LINE_BREAKS: false,
     RESIZE_CORNER_SIZE: 15,
     _translations: {},
     _: function(s) {
