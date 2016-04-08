@@ -8718,14 +8718,14 @@
         }
 
         ContentTools.ToolShelf.stow(OrderedList, 'ordered-list');
-        if (OrderedList.label = 'Numbers list') {
-            
+        if (OrderedList.label == 'Numbers list') {
+            console.log("Ordered list: " + OrderedList);
             OrderedList.label = 'Paragraph';
             OrderedList.icon = 'paragraph';
             OrderedList.listTag = 'p';
             
         } else {
-            
+            console.log("Ordered list: " + OrderedList);
             OrderedList.label = 'Numbers list';
             OrderedList.icon = 'ordered-list';
             OrderedList.listTag = 'ol';
