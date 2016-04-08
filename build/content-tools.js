@@ -8718,16 +8718,23 @@
         }
 
         ContentTools.ToolShelf.stow(OrderedList, 'ordered-list');
-
-        OrderedList.label = 'Numbers list';
-
-        OrderedList.icon = 'ordered-list';
-
-        OrderedList.listTag = 'ol';
+        if (OrderedList.label = 'Numbers list') {
+            
+            OrderedList.label = 'Paragraph';
+            OrderedList.icon = 'paragraph';
+            OrderedList.listTag = 'p';
+            
+        } else {
+            
+            OrderedList.label = 'Numbers list';
+            OrderedList.icon = 'ordered-list';
+            OrderedList.listTag = 'ol';
+                
+        }        
 
         return OrderedList;
 
-    })(ContentTools.Tools.UnorderedList);
+    })(ContentTools.Tool);
 
     ContentTools.Tools.Table = (function(_super) {
         __extends(Table, _super);
