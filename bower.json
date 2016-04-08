@@ -1,5 +1,5 @@
 {
-  "name": "ol-content-tools",
+  "name": "otherlevels-content-tools",
   "description": "OtherLevels fork of ContentTools",
   "main": [
     "build/content-tools.js",
@@ -12,7 +12,7 @@
     "dominic.garibaldi@otherlevels.com"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/iamryandrkake/ContentTools",
+  "homepage": "https://github.com/otherlevels/ContentTools",
   "moduleType": [],
   "ignore": [
     "**/.*",
